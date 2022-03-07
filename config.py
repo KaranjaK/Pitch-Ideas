@@ -4,7 +4,7 @@ import os
 
 class Config:
 
-    pass
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kk:Wemadeit@localhost/watchlist'
 
 class DevConfig(Config):
     DEBUG = True
