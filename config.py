@@ -5,6 +5,7 @@ import os
 class Config:
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kk:Wemadeit@localhost/watchlist'
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 class DevConfig(Config):
     DEBUG = True
