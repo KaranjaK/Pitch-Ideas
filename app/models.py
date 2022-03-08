@@ -9,3 +9,9 @@ class User(db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+class Pitches(db.Model):
+    __tablename__ = 'pitches'
+    id = db.Column(db.Integer, primary_key = True)
+    pitch = db.Column(db.String)
+    pitcher = db.column(db.String)
