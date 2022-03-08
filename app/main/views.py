@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for, abort
 from . import main
 from flask_login import login_required
 from ..models import Users, Pitches
-from .forms import ReviewForm,UpdateProfile
+from .forms import UpdateProfile
 from .. import db
 
 # @main.route('/pitches/review/new/<int:id>', nethods = ['GET', 'POST'])
