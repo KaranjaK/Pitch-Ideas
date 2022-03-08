@@ -1,5 +1,6 @@
 from enum import unique
 from operator import index
+import profile
 from . import db, login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
@@ -13,8 +14,10 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True, index = True)
-    pass_safe = db.Column(db.String(255))
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    bio = db.Column(db.String(255))
+    prof_pic_path = db.column(db.String())
+    pass_safe = db.Column(db.String(255))
 
     @property
     def password(self):
