@@ -19,58 +19,30 @@
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      {% if current_user.is_authenticated %}
+      <!-- {% if current_user.is_authenticated %}
       <li style="color: white; padding: 15px">{{current_user.username}}</li>
-      <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <a href="{{url_for('auth.logout')}}">Sign out</a>
+      </button>
       {% else %}
-      <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-      {%endif%} 
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <a href="{{url_for('auth.login')}}">Sign in</a>
+      </button>
+      {%endif%}  -->
       
       {% if current_user.is_authenticated %}
-      <li>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
         <a href="{{url_for('main.profile',uname=current_user.username)}}"
           >Profile</a
-        >
-      </li>
-      <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-      {% else %}
-      <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-      {%endif%}
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
       </button>
-    </form>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <a href="{{url_for('auth.logout')}}">Sign out</a>
+      </button>
+      {% else %}
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <a href="{{url_for('auth.login')}}">Sign in</a>
+      </button>
+      {%endif%}
+    </ul>
   </div>
 </nav>
