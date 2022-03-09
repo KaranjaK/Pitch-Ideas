@@ -1,3 +1,4 @@
+from cgitb import text
 from linecache import lazycache
 import profile
 from . import db, login_manager
@@ -49,11 +50,11 @@ class Pitches(db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key = True)
     pitchtitle = db.Column(db.String(255),nullable = False)
-    pitch = db.Column(db.text(),nullable = False)
+    pitch = db.Column(db.String(255),nullable = False)
     comments = db.relationship('Commente', backref='ptch', lazy='dynamic')
     upvote = db.relationship('Upvote',backref='pitch',lazy='dynamic')
     downvote = db.relationship('Downvote',backref='pitch',lazy='dynamic')
-    pitcher = db.column(db.Interger, db.Foreignkey('users.id'))
+    pitcher = db.column(db.Integer, db.ForeignKey('users.id'))
     time = db.Column(db.DateTime, default = datetime.utcnow)
     category = db.Column(db.String(255), index = True,nullable = False)
 
