@@ -5,13 +5,15 @@ from ..models import Users, Pitches, Upvote, Downvote, Comment
 from .forms import UpdateProfile, PitchForm, CommentForm
 from .. import db,photos
 
+
 @main.route('/')
 def index():
     pitches = Pitches.query.all()
-    job = Pitches.query.filter_by(category = 'Job').all() 
-    event = Pitches.query.filter_by(category = 'Events').all()
-    advertisement = Pitches.query.filter_by(category = 'Advertisement').all()
-    return render_template('index.html', job = job,event = event, pitches = pitches,advertisement= advertisement)
+    pickup = Pitches.query.filter_by(category = 'Pickup').all() 
+    interview = Pitches.query.filter_by(category = 'Interview').all()
+    products = Pitches.query.filter_by(category = 'Products').all()
+    promotion = Pitches.query.filter_by(category = 'Promotion').all()
+    return render_template('index.html', pitches = pitches, pickup = pickup,interview = interview, products = products, promotion = promotion)
 
 @main.route('/create_new', methods = ['POST','GET'])
 @login_required

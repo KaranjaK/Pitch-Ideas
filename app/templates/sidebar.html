@@ -19,7 +19,7 @@
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
-      <!-- {% if current_user.is_authenticated %}
+      {% if current_user.is_authenticated %}
       <li style="color: white; padding: 15px">{{current_user.username}}</li>
        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
         <a href="{{url_for('auth.logout')}}">Sign out</a>
@@ -28,7 +28,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
         <a href="{{url_for('auth.login')}}">Sign in</a>
       </button>
-      {%endif%}  -->
+      {%endif%} 
       
       {% if current_user.is_authenticated %}
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
