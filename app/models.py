@@ -1,6 +1,3 @@
-from cgitb import text
-from linecache import lazycache
-import profile
 from . import db, login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin, current_user
@@ -13,16 +10,16 @@ def load_user(user_id):
 class Users(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
-    username = db.Column(db.String(255),index = True)
-    email = db.Column(db.String(255),unique = True, index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    username = db.Column(db.String(255),unique = True, nullable = False)
+    email = db.Column(db.String(255),unique = True, nullable = False)
+    pass_safe = db.Column(db.String(255), nullable = False)
     bio = db.Column(db.String(255))
-    prof_pic_path = db.column(db.String())
-    pass_safe = db.Column(db.String(255))
-    pitch = db.relationship('Pitch', backref='user', lazy='dynamic')
-    comments = db.relationship('Comments', backref='user', lazy='dynamic')
-    upvotes = db.relationship('UpVotes', backref='user', lazy='dynamic')
-    downvotes = db.relationship('DownVotes', backref='user', lazy='dynamic')
+    prof_pic_path = db.Column(db.String())
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    pitches = db.relationship('Pitches', backref='user', lazy='dynamic')
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
+    upvotes = db.relationship('Upvote', backref='user', lazy='dynamic')
+    downvotes = db.relationship('Downvote', backref='user', lazy='dynamic')
 
     @property
     def password(self):
@@ -50,11 +47,11 @@ class Pitches(db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key = True)
     pitchtitle = db.Column(db.String(255),nullable = False)
-    pitch = db.Column(db.String(255),nullable = False)
-    comments = db.relationship('Commente', backref='ptch', lazy='dynamic')
+    post = db.Column(db.String(255),nullable = False)
+    comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
     upvote = db.relationship('Upvote',backref='pitch',lazy='dynamic')
     downvote = db.relationship('Downvote',backref='pitch',lazy='dynamic')
-    pitcher = db.column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     time = db.Column(db.DateTime, default = datetime.utcnow)
     category = db.Column(db.String(255), index = True,nullable = False)
 
@@ -74,7 +71,7 @@ class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
-    users = db.relationship('User',backref = 'role',lazy="dynamic")
+    users = db.relationship('Users',backref = 'role',lazy="dynamic")
 
     def __repr__(self):
         return f'User {self.name}'

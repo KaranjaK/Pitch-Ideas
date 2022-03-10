@@ -23,7 +23,7 @@ def new_pitch():
         category = form.category.data
         user_id = current_user
         new_pitch_object = Pitches(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
-        new_pitch_object.save_p()
+        new_pitch_object.pitch_save()
         return redirect(url_for('main.index'))
         
     return render_template('create_pitch.html', form = form)
@@ -66,7 +66,7 @@ def update_profile(uname):
 
     if form.validate_on_submit():
         user.bio = form.bio.data
-        user.save_u()
+        user.user_save()
 
         db.session.add(user)
         db.session.commit()
