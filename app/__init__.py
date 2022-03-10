@@ -33,8 +33,9 @@ def create_app(config_name):
     configure_uploads(app,photos)
     mail.init_app(app)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://kk:admin@localhost/pitches'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] ='wewe'
 
 
     return app
