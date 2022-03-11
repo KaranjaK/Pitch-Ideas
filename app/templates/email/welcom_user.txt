@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Pitches101
+We have just seen you have signed up to Pitchers and want to welcome you to the family. Please enjoy the various pitches.

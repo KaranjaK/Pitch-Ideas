@@ -1,48 +1,62 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Pitches</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
-        >
+<div class="container fluid">
+  <div class="navigation">
+    <h1><span class="material-icons">account_box</span>Pitch</h1>
+    <ul>
+      <li class="list active">
+        <a href="{{url_for('main.index')}}">
+          <span class="material-icons">roofing</span>
+          <span class="title">Home</span>
+        </a>
       </li>
       {% if current_user.is_authenticated %}
-      <li style="color: white; padding: 15px">{{current_user.username}}</li>
-       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        <a href="{{url_for('auth.logout')}}">Sign out</a>
-      </button>
+        <li class="list">
+          <span class="material-icons">account_circle</span>
+          <span class="title">{{current_user.username}}</span>
+        </li>
+        <li class="list">
+          <a href="{{url_for('main.profile',uname=current_user.username)}}">
+            <span class="material-icons">person_pin_circle</span>
+            <span class="title">Profile</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="{{url_for('auth.logout')}}">
+            <span class="material-icons">logout</span>
+            <span class="title">Sign out</span>
+          </a>
+        </li>  
       {% else %}
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        <a href="{{url_for('auth.login')}}">Sign in</a>
-      </button>
-      {%endif%} 
-      
-      {% if current_user.is_authenticated %}
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        <a href="{{url_for('main.profile',uname=current_user.username)}}"
-          >Profile</a
-      </button>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        <a href="{{url_for('auth.logout')}}">Sign out</a>
-      </button>
-      {% else %}
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        <a href="{{url_for('auth.login')}}">Sign in</a>
-      </button>
+        <li class="list">
+          <a href="{{url_for('auth.login')}}">
+            <span class="material-icons">login</span>
+            <span class="title">Sign in</span>
+          </a>
+        </li>
       {%endif%}
     </ul>
   </div>
-</nav>
+
+  <!-- <div class="toggle">
+    <span class="material-icons open">menu</span>
+    <span class="material-icons close">cancel</span>
+
+  </div> -->
+  <script>
+
+    let menuToggle = document.querySelector('.toggle');
+    menuToggle.onclick = function(){
+      menuToggle.classList.toggle('active')
+    }
+
+    let list = document.querySelectorAll('.list');
+    for (let i=0; i<list.length; i++){
+      list[i].onclick = function(){
+        let j = 0;
+        while(j < list.length){
+          list[j++].className = 'list';
+        }
+        list[i].className = 'list active';
+      }
+    }
+  </script>
+</div>
