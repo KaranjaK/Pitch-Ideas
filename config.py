@@ -10,8 +10,8 @@ class Config:
     MAIL_PORT = 465 
     MAIL_USE_TLS = False
     MAIL_USE_SSL= True
-    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
-    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    MAIL_USERNAME = 'appskelvin5@gmail.com'
+    MAIL_PASSWORD = 'sjyhfgizwssnlttl'
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
 
