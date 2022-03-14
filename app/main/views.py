@@ -24,11 +24,11 @@ def new_pitch():
         post = form.post.data
         category = form.category.data
         user_id = current_user
-        new_pitch_object = Pitches(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
+        new_pitch_object = Pitches(post=post,user_id=user_id._get_current_object().id,category=category,title=title)
         new_pitch_object.pitch_save()
         return redirect(url_for('main.index'))
         
-    return render_template('create_pitch.html', form = form)
+    return render_template('pitch.html', form = form)
 
 @main.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
 @login_required
@@ -63,9 +63,6 @@ def update_profile(uname):
     form = UpdateProfile()
     if user is None:
         abort(404)
-
-    form = UpdateProfile()
-
     if form.validate_on_submit():
         user.bio = form.bio.data
         user.user_save()
@@ -81,10 +78,12 @@ def update_profile(uname):
 @login_required
 def update_pic(uname):
     user = Users.query.filter_by(username = uname).first()
+    if user is None:
+        abort(404)
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
-        user.profile_pic_path = path
+        user.prof_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 

@@ -1,50 +1,70 @@
-{% extends 'base.html'%}
-
-{% block content %}
-<div class="container">
+{% extends 'base.html'%} {% block content %}
+<div class="container-fluid profile">
   {% if user == current_user %}
-    <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+  <a
+    href="{{url_for('main.update_profile',uname=user.username)}}"
+    class="eprofile"
+    >Edit profile</a
+  >
   {% endif %}
   <div class="row">
-  <!-- displaying  Username-->
+    <!-- displaying  Username-->
     <div class="col-md-4">
-      <h3> {{user.username| capitalize}} </h3>
+      <h3 class="username">{{user.username| capitalize}}</h3>
 
       <!--Displaying user bio-->
-      {% if user.bio %}
-        <p> {{user.bio}}</p>
-      {%else%}
-        <p> {{user.username| capitalize}} has no bio </p>
-      {% endif %}
+      <div class="biodetail">
+        {% if user.bio %}
+        <p>{{user.bio}}</p>
+        {%else%}
+        <p>{{user.username| capitalize}} has no bio</p>
+        {% endif %}
+      </div>
     </div>
 
     <!--Display profile photo-->
     <div class="col-md-4">
+      {% if user.prof_pic_path %}
 
-      {% if user.profile_pic_path %}
-        <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-        {%else%}
-        <p>No profile picture</p>
+      <img
+        src="{{url_for('static',filename=user.prof_pic_path)}}"
+        alt=""
+        class="profpic"
+      />
+
+      {%else%}
+      <p class="biodetail">Kindly choose a Profile Picture</p>
+
+      {% endif %} {% if user == current_user %}
+      <form
+        action="{{url_for('main.update_pic',uname=user.username)}}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="file"
+          name="photo"
+          class="form-control picupload primary"
+          required
+        />
+        <input type="submit" class="picsubmit" />
+      </form>
       {% endif %}
     </div>
-  </div>
-    <div class="col-md-4">
-    {% if user.profile_pic_path %}
+    <div class="col-md-5" id="user">
+      {% if current_user %}
+      <h3 class="text-center">You have {{user.pitches.count()}} Pitches</h3>
+      {% for i in posts%}
+      <div class="pitches">
+        <h5>Title: {{i.title}}</h5>
+        <h6>{{i.post}}</h6>
+        <p>{{i.comment.count()}} Comments</p>
+      </div>
 
-    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-
-    {%else%}
-    <p>No profile picture</p>
-
-    {% endif %}
-
-        {% if user == current_user %}
-    <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
-
-      <input type="file"  name="photo" class="form-control" required>
-      <input type="submit">
-    </form>
-      {% endif %}
+      {%endfor%} {%else%}
+      <h3>You have ) posts</h3>
+      {%endif%}
+    </div>
   </div>
 </div>
 {% endblock %}

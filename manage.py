@@ -3,7 +3,7 @@ from app.models import Users, Pitches, Role, Comment, Upvote, Downvote
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
 
-app = create_app('production')
+app = create_app('development')
 
 manager = Manager(app)
 manager.add_command('server', Server)
@@ -21,4 +21,4 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 if __name__ == '__main__':
-    app.run()
+    manager.run()

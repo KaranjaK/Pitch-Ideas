@@ -1,62 +1,54 @@
-<div class="container fluid">
+<div class="container-fluid">
   <div class="navigation">
-    <h1><span class="material-icons">account_box</span>Pitch</h1>
+    {% if current_user.is_authenticated %}
+    <img
+      src="{{url_for('static',filename=current_user.prof_pic_path)}}"
+      alt=""
+      class="profpic1"
+    />
+    <br />
+    <h1><span class="title">{{current_user.username}}</span></h1>
+    {% else %}
+    <h2><span class="material-icons">account_circle</span></h2>
+    <br>
+   <h2> <span class="title">Welcome</span></h2>
+    {% endif %}
     <ul>
-      <li class="list active">
+      <li class="list">
         <a href="{{url_for('main.index')}}">
           <span class="material-icons">roofing</span>
           <span class="title">Home</span>
         </a>
       </li>
       {% if current_user.is_authenticated %}
-        <li class="list">
-          <span class="material-icons">account_circle</span>
-          <span class="title">{{current_user.username}}</span>
-        </li>
-        <li class="list">
-          <a href="{{url_for('main.profile',uname=current_user.username)}}">
-            <span class="material-icons">person_pin_circle</span>
-            <span class="title">Profile</span>
-          </a>
-        </li>
-        <li class="list">
-          <a href="{{url_for('auth.logout')}}">
-            <span class="material-icons">logout</span>
-            <span class="title">Sign out</span>
-          </a>
-        </li>  
+      <li class="list">
+        <a href="{{url_for('main.profile',uname=current_user.username)}}">
+          <span class="material-icons">person_pin_circle</span>
+          <span class="title">Profile</span>
+        </a>
+      </li>
+      {% if current_user.is_authenticated %}
+      <li class="list">
+        <a href="{{url_for('main.new_pitch')}}">
+          <span class="material-icons">hub</span>
+          <span class="title">New Pitch</span>
+        </a>
+      </li>
+      {% endif %}
+      <li class="list">
+        <a href="{{url_for('auth.logout')}}">
+          <span class="material-icons">logout</span>
+          <span class="title">Sign out</span>
+        </a>
+      </li>
       {% else %}
-        <li class="list">
-          <a href="{{url_for('auth.login')}}">
-            <span class="material-icons">login</span>
-            <span class="title">Sign in</span>
-          </a>
-        </li>
+      <li class="list">
+        <a href="{{url_for('auth.login')}}">
+          <span class="material-icons">login</span>
+          <span class="title">Sign in</span>
+        </a>
+      </li>
       {%endif%}
     </ul>
   </div>
-
-  <!-- <div class="toggle">
-    <span class="material-icons open">menu</span>
-    <span class="material-icons close">cancel</span>
-
-  </div> -->
-  <script>
-
-    let menuToggle = document.querySelector('.toggle');
-    menuToggle.onclick = function(){
-      menuToggle.classList.toggle('active')
-    }
-
-    let list = document.querySelectorAll('.list');
-    for (let i=0; i<list.length; i++){
-      list[i].onclick = function(){
-        let j = 0;
-        while(j < list.length){
-          list[j++].className = 'list';
-        }
-        list[i].className = 'list active';
-      }
-    }
-  </script>
 </div>

@@ -1,101 +1,227 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* overflow-x: hidden; */
+  overflow: hidden;
 }
-.navigation{
-    position: fixed;
-    top: 2rem;
-    left: 2rem;
-    bottom: 2rem;
-    width: 20rem;
-    border-radius: 1rem;
-    box-sizing: initial;
-    border-left: 2rem solid #4d5bf9;
-    background: #4d5bf9;
-    transition: width 0.5s;
-    padding-top: 2rem;
-    color: whitesmoke;
-    font-family: Concert One;
+.navigation {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  bottom: 2rem;
+  width: 20rem;
+  border-radius: 1rem;
+  box-sizing: initial;
+  border-left: 2rem solid #4d5bf9;
+  background: #4d5bf9;
+  transition: 0.5s;
+  padding-top: 2rem;
+  color: whitesmoke;
+  font-family: Concert One;
 }
-.navigation ul{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 21rem;
-    padding-left: 1rem;
-    padding-top: 6rem;
+.navigation ul {
+  position: absolute;
+  top: 12rem;
+  left: 0;
+  width: 21rem;
+  padding-left: 1rem;
+  padding-top: 6rem;
 }
-.navigation ul li{
-    position: relative;
-    list-style: none;
-    width: 100%;
-    height: 4.5rem;
-    left: -1rem;
-    border-top-left-radius: 3rem;
-    border-bottom-left-radius: 3rem;
+.navigation ul li {
+  position: relative;
+  list-style: none;
+  width: 100%;
+  height: 5rem;
+  left: -1rem;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
 }
-.navigation ul li.active{
-    background-color: #fff;
+.navigation ul li:hover {
+  background-color: #fff;
 }
-.navigation ul li a{
-    position: relative;
-    display: block;
-    width: 100%;
-    display: flex;
-    text-decoration: none;
-    color: whitesmoke;
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: whitesmoke;
 }
-.navigation ul li.active a{
-    color: #000;
+.navigation ul li:hover a {
+  color: #000;
 }
-.navigation ul li a .title{
-    position: relative;
-    display: block;
-    min-width: 6rem;
-    height: 10rem;
-    line-height: 4.5rem;
-    text-align: center;
-    font-size: 1.8rem;
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  min-width: 6rem;
+  height: 10rem;
+  line-height: 4.5rem;
+  text-align: center;
+  font-size: 1.8rem;
 }
-.navigation ul li a .material-icons{
-    font-size: 4rem;    
+.navigation ul li a .material-icons {
+  font-size: 4rem;
 }
-.toggle{
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    width: 5rem;
-    height: 5rem;
-    background: #4d5bf9;
-    border-radius: 1rem;
-    cursor: pointer;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#posts {
+  font-family: Concert One;
+  font-size: 4rem;
 }
-/* .toggle.active{
-    background: #ff4d89;    
+.nav {
+  margin-left: 25rem;
 }
-.toggle.material-icons{
-    position: absolute;
-    color: #fff;
-    font-size: 10rem;
-    display: none;
+.nav-item {
+  padding-left: 4rem;
 }
-.toggle.material-icons.open,
-.toggle.active.material-icons.close{
-    display: block;
+.nav-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #4d5bf9;
+  font-size: 2rem;
 }
-.toggle.material-icons.close,
-.toggle.active.material-icons.open{
-    display: block;
-} */
-
-#posts{
-    font-family: Concert One;
-    font-size: 4rem;
+.signin {
+  width: 400px;
+  height: 420px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 60px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px #000;
 }
-.nav{
-    margin-left: 8rem;
+.signin h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 30px;
+  color: #4d5bf9;
+  text-align: center;
+  margin-bottom: 8%;
+}
+.reg {
+  width: 400px;
+  height: 520px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 60px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px #000;
+}
+.reg h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 30px;
+  color: #4d5bf9;
+  text-align: center;
+  margin-bottom: 8%;
+}
+.profile {
+  margin-left: 25rem;
+  margin-top: 5rem;
+}
+.eprofile {
+  text-decoration: none;
+  font-size: 4rem;
+  color: #000;
+}
+.username {
+  font-family: Alfa Slab One;
+  font-size: 3rem;
+}
+.biodetail {
+  font-size: 2rem;
+}
+.upprof {
+  width: 400px;
+  height: 520px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 60px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px #000;
+}
+.picupload {
+  border: none;
+  background: transparent;
+  outline: none;
+  height: 50px;
+  font-size: 16px;
+  opacity: 1;
+  color: black;
+}
+.picsubmit {
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 70px;
+  background: #4d5bf9;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+.profpic{
+  height: 20rem;
+  width: 20rem;
+  border-radius: 10rem;
+}
+.profpic1{
+  height: 10rem;
+  width: 10rem;
+  border-radius: 10rem;
+}
+.no-pitch{
+  margin-left: 20rem;
+  background-color: #4d5bf9;
+  color: #fff;
+  font-size: 2rem;
+}
+.pitchadd{
+  width: 400px;
+  height: 420px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 60px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px #000;
+}
+h2 .material-icons{
+  font-size: 8rem;
+}
+#carded{
+  margin-left: 15rem;
+  margin-right: -10rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.card-header{
+  background-color: #4d5bf9;
+  color: #fff;
+  font-size: 2rem;
+}
+#coms{
+  width: 400px;
+  height: 420px;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  padding: 60px 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 8px 8px 50px #000;
 }
